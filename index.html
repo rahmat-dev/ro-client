@@ -19,7 +19,88 @@
     <title>Integrasi RajaOngkir</title>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div class="container py-4">
+      <h1>Cek Ongkir</h1>
+      <hr />
+      <!-- FORM -->
+      <form>
+        <!-- Form Origin Province -->
+        <div class="form-group">
+          <label for="origin-province">Provinsi Asal</label>
+          <select class="form-control" id="origin-province">
+            <option value="" selected disabled>Pilih Provinsi Asal</option>
+          </select>
+        </div>
+
+        <!-- Form Origin City -->
+        <div class="form-group">
+          <label for="origin-city">Kota Asal</label>
+          <select class="form-control" id="origin-city">
+            <option value="" selected disabled>Pilih Kota Asal</option>
+          </select>
+        </div>
+
+        <!-- Form Destination Province -->
+        <div class="form-group">
+          <label for="destination-province">Provinsi Tujuan</label>
+          <select class="form-control" id="destination-province">
+            <option value="" selected disabled>Pilih Provinsi Tujuan</option>
+          </select>
+        </div>
+
+        <!-- Form Destination City -->
+        <div class="form-group">
+          <label for="destination-city">Kota Tujuan</label>
+          <select class="form-control" id="destination-city">
+            <option value="" selected disabled>Pilih Kota Tujuan</option>
+          </select>
+        </div>
+
+        <!-- Form Weight -->
+        <div class="form-group">
+          <label for="weight">Berat Barang (gram)</label>
+          <input type="number" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="check">
+          Cek Ongkir
+        </button>
+      </form>
+
+      <div id="cost-details" class="mt-4">
+        <h4>Detail Pengiriman</h4>
+
+        <div class="table-responsive">
+          <table class="table">
+            <caption class="text-center font-italic">
+              Kota Medan - Kota Tanjungbalai (1000 gram)
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Kurir</th>
+                <th scope="col">Layanan</th>
+                <th scope="col">Estimasi Waktu</th>
+                <th scope="col" class="text-right">Biaya</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">JNE</th>
+                <td>REG</td>
+                <td>2-3 hari</td>
+                <td class="text-right">Rp 10.000</td>
+              </tr>
+              <tr>
+                <th scope="row">JNE</th>
+                <td>YES</td>
+                <td>1 hari</td>
+                <td class="text-right">Rp 15.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -38,6 +119,6 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
-    <script src="./main.js"></script>
+    <!-- <script src="./main.js"></script> -->
   </body>
 </html>
