@@ -17,9 +17,15 @@
     />
 
     <title>Integrasi RajaOngkir</title>
+
+    <style>
+      div.form-group > label {
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
-    <div class="container py-4">
+    <div class="container py-3">
       <h1>Cek Ongkir</h1>
       <hr />
       <!-- FORM -->
@@ -60,6 +66,42 @@
         <div class="form-group">
           <label for="weight">Berat Barang (gram)</label>
           <input type="number" class="form-control" id="weight" />
+        </div>
+
+        <!-- Form Courier -->
+        <div class="form-group align-middle">
+          <label class="mr-2 d-block">Kurir</label>
+          <div class="form-check form-check-inline">
+            <input
+              id="jne"
+              value="jne"
+              type="radio"
+              class="form-check-input"
+              name="courier"
+              checked
+            />
+            <label for="jne" class="form-check-label">JNE</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              id="tiki"
+              value="tiki"
+              type="radio"
+              class="form-check-input"
+              name="courier"
+            />
+            <label for="tiki" class="form-check-label">TIKI</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              id="pos"
+              value="pos"
+              type="radio"
+              class="form-check-input"
+              name="courier"
+            />
+            <label for="pos" class="form-check-label">POS</label>
+          </div>
         </div>
 
         <button type="submit" class="btn btn-primary" id="check">

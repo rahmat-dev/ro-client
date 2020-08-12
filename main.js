@@ -87,7 +87,7 @@ $(document).ready(function () {
         origin: elOriginCity.val(),
         destination: elDestinationCity.val(),
         weight: Number(elInputWeight.val()),
-        courier: "jne",
+        courier: $("input[name=courier]:checked").val(),
       };
 
       fetch("http://127.0.0.1:3000/cost", {
