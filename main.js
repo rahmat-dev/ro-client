@@ -3,6 +3,10 @@ $(document).ready(function () {
   const elOriginCity = $("select#origin-city");
   const elDestinationProvince = $("select#destination-province");
   const elDestinationCity = $("select#destination-city");
+  const elInputWeight = $("input#weight");
+  const elButtonCheck = $("button#check");
+
+  $("#cost-details").hide();
 
   // GET PROVINCES
   async function getProvinces() {
@@ -53,7 +57,7 @@ $(document).ready(function () {
     }
   }
 
-  // ON PROVINCE CHANGED
+  // ON CHANGED PROVINCE FIELD
   elOriginProvince.on("change", function () {
     const provinceId = $(this).val();
 
@@ -64,5 +68,64 @@ $(document).ready(function () {
     const provinceId = $(this).val();
 
     getCityByProvince(elDestinationCity, provinceId);
+  });
+
+  // ON PRESSED CEK ONGKIR BUTTON
+  elButtonCheck.on("click", function (e) {
+    e.preventDefault();
+    $("#cost-details").hide();
+    $("#cost-details table tbody").html("");
+
+    if (
+      elOriginProvince.val() &&
+      elOriginCity.val() &&
+      elDestinationProvince.val() &&
+      elDestinationCity.val() &&
+      elInputWeight.val() > 0
+    ) {
+      const data = {
+        origin: elOriginCity.val(),
+        destination: elDestinationCity.val(),
+        weight: Number(elInputWeight.val()),
+        courier: "jne",
+      };
+
+      fetch("http://127.0.0.1:3000/cost", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          const origin = json.origin_details;
+          const destination = json.destination_details;
+          const weight = json.query.weight;
+          const results = json.results;
+          console.log(json);
+
+          $("#cost-details table caption").text(`
+            ${origin.type} ${origin.city_name} - ${destination.type} ${destination.city_name} (${weight})
+          `);
+
+          results[0].costs.map((data) => {
+            $("#cost-details table tbody").append(`
+              <tr>
+                <th scope="row">${results[0].code.toUpperCase()}</th>
+                <td>${data.service}</td>
+                <td>${data.cost[0].etd} hari</td>
+                <td class="text-right">Rp ${data.cost[0].value}</td>
+              </tr>
+            `);
+          });
+
+          $("#cost-details").show();
+        })
+        .catch((err) => console.error(error));
+    } else {
+      alert("Masukkan data dengan benar");
+    }
   });
 });
