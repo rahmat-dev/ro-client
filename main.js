@@ -102,12 +102,12 @@ $(document).ready(function () {
         .then((json) => {
           const origin = json.origin_details;
           const destination = json.destination_details;
-          const weight = json.query.weight;
+          const weight = json.query.weight / 1000;
           const results = json.results;
           console.log(json);
 
           $("#cost-details table caption").text(`
-            ${origin.type} ${origin.city_name} - ${destination.type} ${destination.city_name} (${weight})
+            ${origin.type} ${origin.city_name} - ${destination.type} ${destination.city_name} (${weight} kg)
           `);
 
           results[0].costs.map((data) => {
@@ -116,7 +116,7 @@ $(document).ready(function () {
                 <th scope="row">${results[0].code.toUpperCase()}</th>
                 <td>${data.service}</td>
                 <td>${data.cost[0].etd} hari</td>
-                <td class="text-right">Rp ${data.cost[0].value}</td>
+                <td class="text-right">${formatRupiah(data.cost[0].value)}</td>
               </tr>
             `);
           });
@@ -128,4 +128,11 @@ $(document).ready(function () {
       alert("Masukkan data dengan benar");
     }
   });
+
+  function formatRupiah(value) {
+    const stringReverse = value.toString().split("").reverse().join("");
+    const splitThreeChar = stringReverse.match(/\d{1,3}/g);
+    const result = splitThreeChar.join(".").split("").reverse().join("");
+    return `Rp ${result}`;
+  }
 });
