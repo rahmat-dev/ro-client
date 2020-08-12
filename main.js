@@ -27,7 +27,7 @@ $(document).ready(function () {
         });
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -53,7 +53,7 @@ $(document).ready(function () {
         });
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -104,7 +104,6 @@ $(document).ready(function () {
           const destination = json.destination_details;
           const weight = json.query.weight / 1000;
           const results = json.results;
-          console.log(json);
 
           $("#cost-details table caption").text(`
             ${origin.type} ${origin.city_name} - ${destination.type} ${destination.city_name} (${weight} kg)
